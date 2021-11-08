@@ -21,7 +21,7 @@ Cisync() {
     cp -Rp .circleci ../
 
     echo "LOOP"
-    for _sync_branch in "${MERGE_TO}"
+    for _sync_branch in ${MERGE_TO}
     do
         echo "${_sync_branch}"
         git checkout "${_sync_branch}"
