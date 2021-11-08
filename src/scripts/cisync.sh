@@ -1,6 +1,8 @@
 Cisync() {
     cat .circleci/config.yml
 
+    MERGE_FROM=$(eval echo "\$$MERGE_FROM")
+
     echo "${MERGE_FROM}"
     echo "${MERGE_TO}"
 
