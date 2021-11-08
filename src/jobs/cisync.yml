@@ -15,6 +15,7 @@ parameters:
     description: ""
 steps:
   - checkout
+  - run: echo "[jobs]" << parameters.merge-from >>
   - cisync:
       merge-from: << parameters.merge-from >>
       merge-to: << parameters.merge-to >>

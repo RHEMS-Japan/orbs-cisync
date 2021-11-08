@@ -14,6 +14,7 @@ parameters:
     description: ""
 
 steps:
+  - run: echo "[commands]" << parameters.merge-from >>
   - run:
       environment:
         MERGE_FROM: << parameters.merge-from >>
