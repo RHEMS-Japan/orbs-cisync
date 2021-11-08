@@ -9,5 +9,5 @@ setup() {
     export PARAM_TO="World"
     # Capture the output of our "Greet" function
     result=$(Cisync)
-    [ "$result" == "Hello World" ]
+    [ "$result" == "OK" ]
 }

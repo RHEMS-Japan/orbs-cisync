@@ -1,5 +1,6 @@
 Cisync() {
     cat .circleci/config.yml
+    echo "OK"
 }
 
 # Will not run if sourced for bats-core tests.
