@@ -6,7 +6,7 @@ executor: default
 
 parameters:
   merge-from:
-    type: string
+    type: env_var_name
     default: CIRCLE_BRANCH
     description: ""
   merge-to:
