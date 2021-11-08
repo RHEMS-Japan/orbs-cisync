@@ -12,10 +12,6 @@ parameters:
     type: string
     default: $()
     description: ""
-  to:
-    type: string
-    default: "World"
-    description: "Hello to whom?"
 
 steps:
   - run:

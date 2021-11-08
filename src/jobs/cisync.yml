@@ -5,9 +5,15 @@ description: >
 executor: default
 
 parameters:
-  to:
+  merge-from:
     type: string
-    default: "World"
-    description: "Hello to whom?"
+    default: CIRCLE_BRANCH
+    description: ""
+  merge-to:
+    type: string
+    default: $()
+    description: ""
 steps:
-  - cisync
+  - cisync:
+      merge-from: << parameters.merge-from >>
+      merge-to: << parameters.merge-to >>
