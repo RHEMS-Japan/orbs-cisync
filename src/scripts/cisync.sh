@@ -1,8 +1,8 @@
 Cisync() {
     cat .circleci/config.yml
 
-    echo ${MERGE_FROM}
-    echo ${MERGE_TO}
+    echo "${MERGE_FROM}"
+    echo "${MERGE_TO}"
 
     # _from=`git branch --show-current`
     # git config --global user.name "cisync"
