@@ -4,6 +4,9 @@ Cisync() {
     if [ "$MERGE_FROM" = "CIRCLE_BRANCH" ]; then
         MERGE_FROM=$CIRCLE_BRANCH
     fi
+    if [ "$MERGE_TO" = "git branch" ]; then
+        MERGE_TO=$(git branch)
+    fi
 
     echo "$MERGE_FROM"
     echo "$MERGE_TO"
