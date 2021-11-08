@@ -1,0 +1,13 @@
+description: >
+  Merge .circleci/config.yml into the other branch.
+  This eliminates the differences in config.yml between branches, and enables application code and infrastructure code to be managed separately.
+
+executor: default
+
+parameters:
+  to:
+    type: string
+    default: "World"
+    description: "Hello to whom?"
+steps:
+  - cisync
