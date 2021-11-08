@@ -1,30 +1,34 @@
 Cisync() {
     echo "===="
-    echo "$MERGE_FROM"
-    echo "$MERGE_TO"
+    echo ${MERGE_FROM}
+    echo ${MERGE_TO}
 
-    if [ "$MERGE_FROM" = "CIRCLE_BRANCH" ]; then
+    if [ "${MERGE_FROM}" = "CIRCLE_BRANCH" ]; then
         MERGE_FROM=$CIRCLE_BRANCH
     fi
-    if [ "$MERGE_TO" = "ALL" ]; then
-        MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "$MERGE_FROM")
+    if [ "${MERGE_TO}" = "ALL" ]; then
+        MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
     fi
 
     echo "===="
-    echo "$MERGE_FROM"
-    echo "$MERGE_TO"
+    echo ${MERGE_FROM}
+    echo ${MERGE_TO}
 
-    MERGE_FROM="alpha"
-    MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "$MERGE_FROM")
+    # FOR LOCAL
+    # MERGE_FROM="alpha"
+    # MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
 
     cp -Rp .circleci ../
 
     echo "LOOP"
-    for _sync_branch in `echo $MERGE_TO`
+    for _sync_branch in `echo ${MERGE_TO}`
     do
         echo ${_sync_branch}
         git checkout ${_sync_branch}
         cp -Rp ../.circleci ./
+        git add .circleci/*
+        git commit -m "[skip ci] cisync auto merge from ${MERGE_FROM} -> ${_sync_branch}"
+        git push
     done
 
     # _from=`git branch --show-current`
