@@ -1,4 +1,4 @@
 description: >
-  This is a default executor using ubuntu 20.04 LTS
-docker:
-  - image: 'ubuntu:20.04'
+  This is a default executor.
+machine:
+  image: ubuntu-1604:202007-01
