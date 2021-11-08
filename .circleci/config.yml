@@ -32,8 +32,7 @@ jobs:
       # "greet" is a sample command packaged with this orb config.
       # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
       # Push new changes first, before adding new tests to your config.
-      - cisync/greet:
-          merge-from: alpha
+      - cisync/greet
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -75,7 +74,8 @@ workflows:
     jobs:
       # Run any integration tests defined within the `jobs` key.
       - greet-test
-      - cisync/cisync
+      - cisync/cisync:
+          merge-from: alpha
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
