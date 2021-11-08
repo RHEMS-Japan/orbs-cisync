@@ -11,7 +11,7 @@ parameters:
     description: ""
   merge-to:
     type: string
-    default: $()
+    default: "git branch"
     description: ""
 steps:
   - checkout

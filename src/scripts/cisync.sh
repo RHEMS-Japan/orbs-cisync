@@ -1,6 +1,10 @@
 Cisync() {
     cat .circleci/config.yml
 
+    echo "===="
+    echo "$MERGE_FROM"
+    echo "$MERGE_TO"
+
     if [ "$MERGE_FROM" = "CIRCLE_BRANCH" ]; then
         MERGE_FROM=$CIRCLE_BRANCH
     fi
@@ -8,6 +12,7 @@ Cisync() {
         MERGE_TO=$(git branch)
     fi
 
+    echo "===="
     echo "$MERGE_FROM"
     echo "$MERGE_TO"
 
