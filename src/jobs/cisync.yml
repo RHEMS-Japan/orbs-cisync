@@ -14,6 +14,7 @@ parameters:
     default: $()
     description: ""
 steps:
+  - checkout
   - cisync:
       merge-from: << parameters.merge-from >>
       merge-to: << parameters.merge-to >>

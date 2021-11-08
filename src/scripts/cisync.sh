@@ -6,7 +6,7 @@ Cisync() {
 
     # _from=`git branch --show-current`
     # git config --global user.name "cisync"
-    # git config --global user.email "cisync@miraibox"
+    # git config --global user.email "cisync@rhems-japan.co.jp"
     # cp -Rip .circleci ../
     # # cp -Rip ReadMe.md ../
 
