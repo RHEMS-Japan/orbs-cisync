@@ -3,9 +3,7 @@ Cisync() {
     echo "${MERGE_FROM}"
     echo "${MERGE_TO}"
 
-    if [ "${MERGE_FROM}" = "CIRCLE_BRANCH" ]; then
-        MERGE_FROM=$CIRCLE_BRANCH
-    fi
+    MERGE_FROM=$(eval echo "$CIRCLE_BRANCH")
     if [ "${MERGE_TO}" = "ALL" ]; then
         MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
     fi
@@ -19,6 +17,8 @@ Cisync() {
     # MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
 
     cp -Rp .circleci ../
+    git config --global user.name "${USER_NAME}"
+    git config --global user.email "${USER_EMAIL}"
 
     echo "LOOP"
     for _sync_branch in ${MERGE_TO}

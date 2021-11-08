@@ -6,16 +6,25 @@ executor: default
 
 parameters:
   merge-from:
-    type: env_var_name
-    default: CIRCLE_BRANCH
+    type: string
+    default: $CIRCLE_BRANCH
     description: ""
   merge-to:
     type: string
     default: "ALL"
     description: ""
+  user-name:
+    type: string
+    description: ""
+  user-email:
+    type: string
+    description: ""
+    
 steps:
   - checkout
   - run: echo "[jobs]" << parameters.merge-from >>
   - cisync:
       merge-from: << parameters.merge-from >>
       merge-to: << parameters.merge-to >>
+      user-name: << parameters.user-name >>
+      user-email: << parameters.user-email >>

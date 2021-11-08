@@ -5,12 +5,18 @@ description: >
 
 parameters:
   merge-from:
-    type: env_var_name
-    default: CIRCLE_BRANCH
+    type: string
+    default: $CIRCLE_BRANCH
     description: ""
   merge-to:
     type: string
     default: "ALL"
+    description: ""
+  user-name:
+    type: string
+    description: ""
+  user-email:
+    type: string
     description: ""
 
 steps:
@@ -19,5 +25,7 @@ steps:
       environment:
         MERGE_FROM: << parameters.merge-from >>
         MERGE_TO: << parameters.merge-to >>
+        USER_NAME: << parameters.user-name >>
+        USER_EMAIL: << parameters.user-email >>
       name: cisync
       command: << include(scripts/cisync.sh) >>
