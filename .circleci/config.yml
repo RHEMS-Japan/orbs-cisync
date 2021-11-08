@@ -88,7 +88,8 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
-            - integration-test-1
+            - greet-test
+            - cisync/cisync
           filters:
             branches:
               only:
