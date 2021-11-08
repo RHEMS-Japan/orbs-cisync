@@ -19,7 +19,7 @@ parameters:
   user-email:
     type: string
     description: ""
-    
+
 steps:
   - checkout
   - run: echo "[jobs]" << parameters.merge-from >>
