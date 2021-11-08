@@ -10,7 +10,7 @@ parameters:
     description: ""
   merge-to:
     type: string
-    default: "git branch"
+    default: "ALL"
     description: ""
 
 steps:

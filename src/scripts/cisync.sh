@@ -1,6 +1,4 @@
 Cisync() {
-    cat .circleci/config.yml
-
     echo "===="
     echo "$MERGE_FROM"
     echo "$MERGE_TO"
@@ -8,13 +6,26 @@ Cisync() {
     if [ "$MERGE_FROM" = "CIRCLE_BRANCH" ]; then
         MERGE_FROM=$CIRCLE_BRANCH
     fi
-    if [ "$MERGE_TO" = "git branch" ]; then
-        MERGE_TO=$(git branch)
+    if [ "$MERGE_TO" = "ALL" ]; then
+        MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "$MERGE_FROM")
     fi
 
     echo "===="
     echo "$MERGE_FROM"
     echo "$MERGE_TO"
+
+    MERGE_FROM="alpha"
+    MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "$MERGE_FROM")
+
+    cp -Rp .circleci ../
+
+    echo "LOOP"
+    for _sync_branch in `echo $MERGE_TO`
+    do
+        echo ${_sync_branch}
+        git checkout ${_sync_branch}
+        cp -Rp ../.circleci ./
+    done
 
     # _from=`git branch --show-current`
     # git config --global user.name "cisync"
