@@ -19,6 +19,9 @@ parameters:
   user-email:
     type: string
     description: ""
+  fingerprint:
+    type: string
+    description: ""
 
 steps:
   - checkout
@@ -28,3 +31,4 @@ steps:
       merge-to: << parameters.merge-to >>
       user-name: << parameters.user-name >>
       user-email: << parameters.user-email >>
+      fingerprint: << parameters.fingerprint >>

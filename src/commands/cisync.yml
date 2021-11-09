@@ -18,9 +18,16 @@ parameters:
   user-email:
     type: string
     description: ""
+  fingerprint:
+    type: string
+    description: ""
 
 steps:
   - run: echo "[commands]" << parameters.merge-from >>
+  - add_ssh_keys:
+      fingerprints:
+        - << parameters.fingerprint >>
+        #- "88:9d:e5:dc:1d:9a:d7:d7:52:fc:c3:ad:4b:a3:3c:0e"
   - run:
       environment:
         MERGE_FROM: << parameters.merge-from >>
