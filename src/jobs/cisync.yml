@@ -4,6 +4,10 @@ description: >
 executor: default
 
 parameters:
+  always:
+    type: boolean
+    default: false
+    description: ""
   merge-from:
     type: string
     default: $CIRCLE_BRANCH

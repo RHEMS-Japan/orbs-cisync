@@ -4,6 +4,10 @@ description: >
 # Descriptions should be short, simple, and clear.
 
 parameters:
+  always:
+    type: boolean
+    default: false
+    description: ""
   merge-from:
     type: string
     default: $CIRCLE_BRANCH
@@ -25,6 +29,16 @@ parameters:
     description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended to use deploy key. See https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key."
 
 steps:
+  - run:
+      name: check always
+      command: |
+        if [ ! << parameters.always >> ]; then
+          commit_subject=$(git log -1 --pretty=%s.)
+          match=$(echo "${commit_subject}" | sed -En 's/.*\[cisync\].*/\1/p')
+          if [ -z "${match}" ]; then
+            circleci-agent step halt
+          fi
+        fi
   - add_ssh_keys:
       fingerprints:
         - << parameters.fingerprint >>
