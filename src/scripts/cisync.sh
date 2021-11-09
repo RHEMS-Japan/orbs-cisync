@@ -25,7 +25,7 @@ Cisync() {
         echo "${_sync_branch}"
         git checkout "${_sync_branch}"
         cp -Rp ../.circleci ./
-        git add .circleci/*
+        git add -u .circleci/*
         git diff-index --quiet HEAD || git commit -m "[skip ci] cisync auto merge from ${MERGE_FROM} -> ${_sync_branch}"
         git push
     done
