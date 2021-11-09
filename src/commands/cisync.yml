@@ -35,7 +35,7 @@ steps:
         if ! << parameters.always >>; then
           commit_subject=$(git log -1 --pretty=%s.)
           echo "${commit_subject}"
-          match=$(echo "${commit_subject}" | sed -n 's/.*\[cisync\].*/\1/p')
+          match=$(echo "${commit_subject}" | sed -rn 's/.*\[cisync\].*/\1/p')
           echo "${match}"
           if [ -z "${match}" ]; then
             circleci-agent step halt
