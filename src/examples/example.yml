@@ -1,4 +1,6 @@
 description: >
+  How to get fingerprint, please refer to README
+  https://github.com/RHEMS-Japan/orbs-cisync#how-to-setup-fingerprint
 # Provide a use-case based example for using this orb.
 # Everything in the `usage` section will be displayed in the orb registry.
 # Comments are not retained.
@@ -12,6 +14,4 @@ usage:
     your-workflow:
       jobs:
         - cisync/cisync:
-            # How to get fingerprint, please refer to README
-            # https://github.com/RHEMS-Japan/orbs-cisync#how-to-setup-fingerprint
             fingerprint: "SO:ME:FI:NG:ER:PR:IN:T"
