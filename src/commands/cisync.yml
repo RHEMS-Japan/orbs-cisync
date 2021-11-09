@@ -14,16 +14,17 @@ parameters:
     description: ""
   user-name:
     type: string
+    default: "cisync"
     description: ""
   user-email:
     type: string
+    default: "cisync@rhems-japan.co.jp"
     description: ""
   fingerprint:
     type: string
     description: ""
 
 steps:
-  - run: echo "[commands]" << parameters.merge-from >>
   - add_ssh_keys:
       fingerprints:
         - << parameters.fingerprint >>

@@ -15,9 +15,11 @@ parameters:
     description: ""
   user-name:
     type: string
+    default: "cisync"
     description: ""
   user-email:
     type: string
+    default: "cisync@rhems-japan.co.jp"
     description: ""
   fingerprint:
     type: string
@@ -25,7 +27,6 @@ parameters:
 
 steps:
   - checkout
-  - run: echo "[jobs]" << parameters.merge-from >>
   - cisync:
       merge-from: << parameters.merge-from >>
       merge-to: << parameters.merge-to >>

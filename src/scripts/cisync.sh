@@ -1,16 +1,13 @@
 Cisync() {
-    echo "===="
-    echo "${MERGE_FROM}"
-    echo "${MERGE_TO}"
-
     MERGE_FROM=$(eval echo "$CIRCLE_BRANCH")
     if [ "${MERGE_TO}" = "ALL" ]; then
         MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
     fi
 
     echo "===="
-    echo "${MERGE_FROM}"
-    echo "${MERGE_TO}"
+    echo "from: ${MERGE_FROM}"
+    echo "  to: ${MERGE_TO}"
+    echo "===="
 
     # FOR LOCAL
     # MERGE_FROM="alpha"
@@ -20,7 +17,6 @@ Cisync() {
     git config --global user.name "${USER_NAME}"
     git config --global user.email "${USER_EMAIL}"
 
-    echo "LOOP"
     for _sync_branch in ${MERGE_TO}
     do
         echo "${_sync_branch}"
@@ -30,23 +26,6 @@ Cisync() {
         git commit -m "[skip ci] cisync auto merge from ${MERGE_FROM} -> ${_sync_branch}"
         git push
     done
-
-    # _from=`git branch --show-current`
-    # git config --global user.name "cisync"
-    # git config --global user.email "cisync@rhems-japan.co.jp"
-    # cp -Rip .circleci ../
-    # # cp -Rip ReadMe.md ../
-
-    # for _sync_branch in `cat .circleci/cisync/config | egrep -v "^#|${_from}"`
-    # do
-    #     git checkout ${_sync_branch}
-    #     rm -Rf .circleci
-    #     cp -Rip ../.circleci ./
-    #     # cp ../ReadMe.md ./
-    #     git add .circleci/*
-    #     git commit -m "[skip ci] cisync auto merge from ${_from} -> ${_sync_branch}"
-    #     git push
-    # done
 
     echo "OK"
 }
