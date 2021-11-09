@@ -1,30 +1,46 @@
 description: >
-  This command echos "Hello World" using file inclusion.
+  Merge .circleci/config.yml into the other branch.
 # What will this command do?
 # Descriptions should be short, simple, and clear.
 
 parameters:
+  always:
+    type: boolean
+    default: false
+    description: "Whether merging should always be performed. By default, merging is performed only when the commit message contains [cisync]. If true is specified, then merge will always be performed regardless of commit messages."
   merge-from:
     type: string
     default: $CIRCLE_BRANCH
-    description: ""
+    description: "Branch name to merge from. If not specified, the environment variable CIRCLE_BRANCH will be used."
   merge-to:
     type: string
     default: "ALL"
-    description: ""
+    description: "Branch name to merge into. If not specified, all branches except merge-from will be used."
   user-name:
     type: string
     default: "cisync"
-    description: ""
+    description: "GitHub user.name to create the cisync commits."
   user-email:
     type: string
     default: "cisync@rhems-japan.co.jp"
-    description: ""
+    description: "GitHub user.email to create the cisync commits."
   fingerprint:
     type: string
-    description: ""
+    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended to use deploy key. See https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key."
 
 steps:
+  - run:
+      name: check always
+      command: |
+        if ! << parameters.always >>; then
+          commit_subject=$(git log -1 --pretty=%s.)
+          echo "${commit_subject}"
+          match=$(echo "${commit_subject}" | sed -rn '/.*\[cisync\].*/p')
+          echo "${match}"
+          if [ -z "${match}" ]; then
+            circleci-agent step halt
+          fi
+        fi
   - add_ssh_keys:
       fingerprints:
         - << parameters.fingerprint >>

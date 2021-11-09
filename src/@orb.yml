@@ -1,7 +1,9 @@
 version: 2.1
 
 description: >
-  Sample orb description
+  Merge .circleci/config.yml into the other branch.
+  This eliminates the differences in config.yml between branches, and enables application code and infrastructure code to be managed separately.
+
 # What will your orb allow users to accomplish?
 # Descriptions should be short, simple, and informative.
 
