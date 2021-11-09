@@ -1,0 +1,38 @@
+description: >
+  This command echos "Hello World" using file inclusion.
+# What will this command do?
+# Descriptions should be short, simple, and clear.
+
+parameters:
+  merge-from:
+    type: string
+    default: $CIRCLE_BRANCH
+    description: ""
+  merge-to:
+    type: string
+    default: "ALL"
+    description: ""
+  user-name:
+    type: string
+    default: "cisync"
+    description: ""
+  user-email:
+    type: string
+    default: "cisync@rhems-japan.co.jp"
+    description: ""
+  fingerprint:
+    type: string
+    description: ""
+
+steps:
+  - add_ssh_keys:
+      fingerprints:
+        - << parameters.fingerprint >>
+  - run:
+      environment:
+        MERGE_FROM: << parameters.merge-from >>
+        MERGE_TO: << parameters.merge-to >>
+        USER_NAME: << parameters.user-name >>
+        USER_EMAIL: << parameters.user-email >>
+      name: cisync
+      command: << include(scripts/cisync.sh) >>

@@ -1,0 +1,35 @@
+description: >
+  Merge .circleci/config.yml into the other branch.
+  This eliminates the differences in config.yml between branches, and enables application code and infrastructure code to be managed separately.
+
+executor: default
+
+parameters:
+  merge-from:
+    type: string
+    default: $CIRCLE_BRANCH
+    description: ""
+  merge-to:
+    type: string
+    default: "ALL"
+    description: ""
+  user-name:
+    type: string
+    default: "cisync"
+    description: ""
+  user-email:
+    type: string
+    default: "cisync@rhems-japan.co.jp"
+    description: ""
+  fingerprint:
+    type: string
+    description: ""
+
+steps:
+  - checkout
+  - cisync:
+      merge-from: << parameters.merge-from >>
+      merge-to: << parameters.merge-to >>
+      user-name: << parameters.user-name >>
+      user-email: << parameters.user-email >>
+      fingerprint: << parameters.fingerprint >>
