@@ -12,4 +12,6 @@ usage:
     your-workflow:
       jobs:
         - cisync/cisync:
+            # How to get fingerprint, please refer to README
+            # https://github.com/RHEMS-Japan/orbs-cisync#how-to-setup-fingerprint
             fingerprint: "SO:ME:FI:NG:ER:PR:IN:T"
