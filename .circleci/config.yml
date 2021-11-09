@@ -24,7 +24,7 @@ parameters:
 
 jobs:
   # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
-  integration-test-1:
+  greet-test:
     docker:
       - image: cimg/base:stable
     steps:
@@ -73,7 +73,11 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
-      - integration-test-1
+      - greet-test
+      - cisync/cisync:
+          user-name: cisync
+          user-email: cisync@rhems-japan.co.jp
+          fingerprint: 88:9d:e5:dc:1d:9a:d7:d7:52:fc:c3:ad:4b:a3:3c:0e
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
@@ -87,7 +91,8 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
-            - integration-test-1
+            - greet-test
+            - cisync/cisync
           filters:
             branches:
               only:
