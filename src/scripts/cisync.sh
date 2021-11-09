@@ -1,6 +1,11 @@
 Cisync() {
     MERGE_FROM=$(eval echo "$CIRCLE_BRANCH")
     if [ "${MERGE_TO}" = "ALL" ]; then
+        git branch -r | grep -v '\->' | while read remote; do
+            git branch --track "${remote#origin/}" "$remote"
+        done
+        git fetch --all
+        git pull --all
         MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
     fi
 
@@ -17,8 +22,7 @@ Cisync() {
     git config --global user.name "${USER_NAME}"
     git config --global user.email "${USER_EMAIL}"
 
-    for _sync_branch in ${MERGE_TO}
-    do
+    for _sync_branch in ${MERGE_TO}; do
         echo "${_sync_branch}"
         git checkout "${_sync_branch}"
         cp -Rp ../.circleci ./
