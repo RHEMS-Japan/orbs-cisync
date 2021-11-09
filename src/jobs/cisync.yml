@@ -7,7 +7,7 @@ parameters:
   always:
     type: boolean
     default: false
-    description: ""
+    description: "Whether merging should always be performed. By default, merging is performed only when the commit message contains [cisync]. If true is specified, then merge will always be performed regardless of commit messages."
   merge-from:
     type: string
     default: $CIRCLE_BRANCH
