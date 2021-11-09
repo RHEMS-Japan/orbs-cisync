@@ -1,5 +1,5 @@
 description: >
-  This command echos "Hello World" using file inclusion.
+  Merge .circleci/config.yml into the other branch.
 # What will this command do?
 # Descriptions should be short, simple, and clear.
 
@@ -7,22 +7,22 @@ parameters:
   merge-from:
     type: string
     default: $CIRCLE_BRANCH
-    description: ""
+    description: "Branch name to merge from. If not specified, the environment variable CIRCLE_BRANCH will be used."
   merge-to:
     type: string
     default: "ALL"
-    description: ""
+    description: "Branch name to merge into. If not specified, all branches except merge-from will be used."
   user-name:
     type: string
     default: "cisync"
-    description: ""
+    description: "GitHub user.name to create the cisync commits."
   user-email:
     type: string
     default: "cisync@rhems-japan.co.jp"
-    description: ""
+    description: "GitHub user.email to create the cisync commits."
   fingerprint:
     type: string
-    description: ""
+    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended to use deploy key. See https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key."
 
 steps:
   - add_ssh_keys:
