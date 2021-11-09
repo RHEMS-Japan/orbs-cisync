@@ -8,7 +8,7 @@ usage:
   version: 2.1
 
   orbs:
-    cisync: rhems-japan/cisync@0.0.2
+    cisync: rhems-japan/cisync@x.y.z
 
   workflows:
     your-workflow:
