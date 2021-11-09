@@ -5,7 +5,6 @@ Cisync() {
             git branch --track "${remote#origin/}" "$remote" || true
         done
         git fetch --all
-        git pull --all
         MERGE_TO=$(git for-each-ref --format="%(refname:short)" refs/heads/ | grep -v "${MERGE_FROM}")
     fi
 
