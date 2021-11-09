@@ -4,9 +4,14 @@ description: >
 # Comments are not retained.
 usage:
   version: 2.1
+
   orbs:
     cisync: rhems-japan/cisync@0.0.2
+
   workflows:
     your-workflow:
       jobs:
-        - cisync/cisync
+        - cisync/cisync:
+            # How to get fingerprint, please refer to README
+            # https://github.com/RHEMS-Japan/orbs-cisync#how-to-setup-fingerprint
+            fingerprint: "SO:ME:FI:NG:ER:PR:IN:T"
