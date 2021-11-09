@@ -1,7 +1,7 @@
 Cisync() {
     MERGE_FROM=$(eval echo "$CIRCLE_BRANCH")
     if [ "${MERGE_TO}" = "ALL" ]; then
-        git branch -r | grep -v '\->' | while read remote; do
+        git branch -r | grep -v '\->' | while read -r remote; do
             git branch --track "${remote#origin/}" "$remote"
         done
         git fetch --all
