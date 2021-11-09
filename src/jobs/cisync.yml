@@ -31,6 +31,7 @@ parameters:
 steps:
   - checkout
   - cisync:
+      always: << parameters.always >>
       merge-from: << parameters.merge-from >>
       merge-to: << parameters.merge-to >>
       user-name: << parameters.user-name >>
