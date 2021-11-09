@@ -26,7 +26,7 @@ parameters:
     description: "GitHub user.email to create the cisync commits."
   fingerprint:
     type: string
-    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended to use deploy key. See https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key."
+    description: "Fingerprint of SSH keys that have write permission to the repository. It is recommended that you refer to https://circleci.com/docs/2.0/gh-bb-integration/#creating-a-github-deploy-key and use the deployment key."
 
 steps:
   - run:

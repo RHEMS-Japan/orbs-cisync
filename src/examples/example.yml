@@ -4,9 +4,12 @@ description: >
 # Comments are not retained.
 usage:
   version: 2.1
+
   orbs:
     cisync: rhems-japan/cisync@0.0.2
+
   workflows:
     your-workflow:
       jobs:
-        - cisync/cisync
+        - cisync/cisync:
+            fingerprint: "SO:ME:FI:NG:ER:PR:IN:T"
