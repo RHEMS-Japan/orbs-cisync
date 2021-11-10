@@ -70,7 +70,7 @@ workflows:
     jobs:
       # Run any integration tests defined within the `jobs` key.
       - cisync/cisync:
-          fingerprint: 88:9d:e5:dc:1d:9a:d7:d7:52:fc:c3:ad:4b:a3:3c:0e
+          fingerprint: "88:9d:e5:dc:1d:9a:d7:d7:52:fc:c3:ad:4b:a3:3c:0e"
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
