@@ -1,7 +1,7 @@
 description: >
   Merge .circleci directory into the other branch.
 
-executor: default
+executor: exe-cisync
 
 parameters:
   always:
