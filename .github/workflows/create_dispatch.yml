@@ -1,6 +1,9 @@
 name: Post to orbs-package
 
-on: [push]
+on:
+  push:
+    branches:
+      - "master"
 
 jobs:
   post:
