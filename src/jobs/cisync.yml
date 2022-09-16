@@ -38,6 +38,7 @@ steps:
       always: << parameters.always >>
       merge-from: << parameters.merge-from >>
       merge-to: << parameters.merge-to >>
+      merge-to-ignore: << parameters.merge-to-ignore >>
       user-name: << parameters.user-name >>
       user-email: << parameters.user-email >>
       fingerprint: << parameters.fingerprint >>

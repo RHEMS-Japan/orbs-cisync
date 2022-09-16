@@ -52,6 +52,7 @@ steps:
       environment:
         MERGE_FROM: << parameters.merge-from >>
         MERGE_TO: << parameters.merge-to >>
+        MERGE_TO_IGNORE: << parameters.merge-to-ignore >>
         USER_NAME: << parameters.user-name >>
         USER_EMAIL: << parameters.user-email >>
       name: cisync
