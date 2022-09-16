@@ -72,7 +72,7 @@ workflows:
       - cisync/cisync:
           always: true
           merge-from: alpha
-          merge-to: "master alpha-second/all"
+          merge-to: "master alpha-second"
           merge-to-ignore: alpha-second
           fingerprint: "88:9d:e5:dc:1d:9a:d7:d7:52:fc:c3:ad:4b:a3:3c:0e"
       # Publish a semver version of the orb. relies on
