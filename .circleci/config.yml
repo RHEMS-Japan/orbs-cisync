@@ -38,9 +38,9 @@ workflows:
     jobs:
       - orb-tools/lint # Lint Yaml files
       - orb-tools/pack # Pack orb source
-      - shellcheck/check:
-          dir: ./src/scripts
-          exclude: SC2148
+      # - shellcheck/check:
+      #     dir: ./src/scripts
+      #     exclude: SC2148
       # optional: Run BATS tests against your scripts
       - bats/run:
           path: ./src/tests
@@ -52,7 +52,7 @@ workflows:
             - orb-tools/lint
             - orb-tools/pack
             - bats/run
-            - shellcheck/check
+            # - shellcheck/check
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
       - orb-tools/trigger-integration-tests-workflow:
@@ -72,8 +72,7 @@ workflows:
       - cisync/cisync:
           always: true
           merge-from: alpha
-          merge-to: "master alpha-second"
-          merge-to-ignore: alpha-second
+          merge-to: "alpha-second merge-test"
           fingerprint: "88:9d:e5:dc:1d:9a:d7:d7:52:fc:c3:ad:4b:a3:3c:0e"
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
