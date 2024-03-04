@@ -45,7 +45,6 @@ steps:
             circleci-agent step halt
           fi
         fi
-  - add_ssh_keys
   - add_ssh_keys:
       fingerprints:
         - << parameters.fingerprint >>
