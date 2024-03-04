@@ -73,7 +73,7 @@ workflows:
           always: true
           merge-from: alpha
           merge-to: "alpha-second merge-test"
-          fingerprint: ""
+          fingerprint: "35:f7:8b:6d:ef:ed:d7:cc:12:77:7a:ac:5a:5a:77:63"
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
